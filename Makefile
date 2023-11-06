@@ -1,11 +1,14 @@
 SYSIMG_PATH := build/BinutilsTest-v1.so
+JULIA := julia
 
 $(SYSIMG_PATH):
-	julia --project=. build_sysimage.jl
+	$(JULIA) -e 'import Pkg; Pkg.activate("."); Pkg.resolve(); Pkg.instantiate()'
+	$(JULIA) -e 'import Pkg; Pkg.activate("BinutilsTest"); Pkg.resolve(); Pkg.instantiate()'
+	$(JULIA) --project=. build_sysimage.jl
 
-# To test, start the system image in a completely new depot, get rid of the `Artifacts.toml` file
-# and ask for the binutils path
+# We have multiple tests here, deleting the depot, deleting the `Artifacts.toml`, etc...
 test: $(SYSIMG_PATH)
 	rm -rf build/depot
+	rm -f BinutilsTest/Artifacts.toml
 	JULIA_DEPOT_PATH=build/depot \
-	julia -J$(SYSIMG_PATH) -e 'import .BinutilsTest; BinutilsTest.get_binutils_path()'
+	$(JULIA) -J$(SYSIMG_PATH) -e 'import .BinutilsTest; @show BinutilsTest.get_binutils_path()'
