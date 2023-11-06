@@ -1,0 +1,8 @@
+name = "BinutilsTest"
+uuid = "db215582-34aa-4254-895e-ffeeb025da18"
+authors = ["Elliot Saba <staticfloat@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Artifacts = "56f22d72-fd6d-98f1-02f0-08ddc0907c33"
+LazyArtifacts = "4af54fe1-eca0-43a8-85a7-787d91b784e3"
