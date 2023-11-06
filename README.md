@@ -1,0 +1,1 @@
+Run `make test` to build a system image and run the tests; by default this will fail, try running it once with no `rm` commands in the `test` target to seed the depot with the correct artifact, then add in the `rm -f BinutilsTest/Artifacts.toml` file again to remove the `Artifacts.toml` file, and note that it still works, because the depot already contains the artifact.
